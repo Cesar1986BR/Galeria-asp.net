@@ -1,0 +1,63 @@
+﻿@model Galeria.Models.ProdutoVM
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>@Model.Produto.Nome</h2>
+
+<div class="row">
+
+    <div class="col-xs-12 col-md-4">
+        <img src="/Images/Uploads/Produto/@Model.Produto.Id/Thumbs/@Model.Produto.ImagemNome" />
+    </div>
+
+    <div class="col-xs-12 col-md-8">
+        @*@Html.DisplayFor(model => model.Produto.Nome)
+        <br />*@
+        <h4> @Html.DisplayFor(model => model.Produto.Descrição)</h4>
+        <br />
+        @*<br />
+        $@Html.DisplayFor(model => model.Produto.Valor)
+        <br />*@
+
+    </div>
+
+</div>
+
+<hr />
+<div class=" row">
+    <h3>Fotos</h3>
+
+    <div class=" col-xs-12 fancyboxdiv">
+        <br />
+        @foreach (var image in Model.Galeria)
+        {
+            <div style="display:inline-block">
+                <a class="fancybox" rel="galçery1" href="/Images/Uploads/Produto/@Model.Produto.Id/Gallery/@image">
+
+                    <img src="/Images/Uploads/Produto/@Model.Produto.Id/Gallery/Thumbs/@image" />
+                </a>
+            </div>
+        }
+
+    </div>
+
+</div>
+<link href="~/Content/jquery.fancybox.css" rel="stylesheet" />
+<br>
+<br>
+<br>
+<p>
+    @Html.ActionLink("Edit", "EditarProduto", new { id = Model.Produto.Id }, new { @class="btn btn-info"}) |
+    @Html.ActionLink("Voltar", "Index",null, new { @class = "btn btn-info" })
+</p>
+@section Scripts {
+
+   <script src="~/Scripts/jquery.fancybox.js"></script>
+     <script>
+         $(function () {
+             $(".fancybox").fancybox();
+        });
+    </script> 
+}

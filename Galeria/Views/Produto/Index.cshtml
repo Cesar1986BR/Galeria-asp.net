@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Galeria.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Inicio</h2>
+
+<p>
+    @Html.ActionLink("Adicionar novo", "Create",null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Nome
+        </th>
+        @*<th>
+          Descrição
+        </th>*@
+        <th>
+           ImagemNome
+        </th>
+        @*<th>
+            Valor
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Descrição)
+        </td>*@
+        <td>
+           <img src="/Images/Uploads/Produto/@item.Id/Thumbs/@item.ImagemNome" />
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Valor)
+        </td>*@
+        <td>
+            @Html.ActionLink("Editar", "EditarProduto", new { id = item.Id }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Ver Galeria", "Detalhes", new { id = item.Id }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+
+    </tr>
+}
+
+</table>
